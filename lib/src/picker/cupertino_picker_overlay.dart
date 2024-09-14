@@ -51,8 +51,7 @@ class _CupertinoPickerOverlayState extends State<CupertinoPickerOverlay> {
 
   void _closeOverlay() {
     if (_controller != null) {
-      final bool isReverseInProgress =
-          _controller!.status == AnimationStatus.reverse;
+      final bool isReverseInProgress = _controller!.status == AnimationStatus.reverse;
       if (!isReverseInProgress) {
         _controller?.reverse(from: 0.75);
       }
@@ -88,23 +87,14 @@ class _CupertinoPickerOverlayState extends State<CupertinoPickerOverlay> {
     final double widgetTopCenterY = widgetPosition.dy;
     final double widgetBottomCenterY = widgetPosition.dy + widgetHeight;
 
-    final double spaceOnTop =
-        widgetTopCenterY - offset.dy - verticalSpacing - safeArea.top;
-    final double spaceOnLeft =
-        widgetCenterX - horizontalSpacing - safeArea.left;
-    final double spaceOnRight =
-        screenWidth - widgetCenterX - horizontalSpacing - safeArea.right;
-    final double spaceOnBottom = screenHeight -
-        widgetBottomCenterY -
-        offset.dy -
-        verticalSpacing -
-        safeArea.bottom;
+    final double spaceOnTop = widgetTopCenterY - offset.dy - verticalSpacing - safeArea.top;
+    final double spaceOnLeft = widgetCenterX - horizontalSpacing - safeArea.left;
+    final double spaceOnRight = screenWidth - widgetCenterX - horizontalSpacing - safeArea.right;
+    final double spaceOnBottom = screenHeight - widgetBottomCenterY - offset.dy - verticalSpacing - safeArea.bottom;
 
     final double halfWidth = width / 2;
-    final double neededSpaceOnRight =
-        spaceOnLeft < halfWidth ? width - spaceOnLeft : halfWidth;
-    final double neededSpaceOnLeft =
-        spaceOnRight < halfWidth ? width - spaceOnRight : halfWidth;
+    final double neededSpaceOnRight = spaceOnLeft < halfWidth ? width - spaceOnLeft : halfWidth;
+    final double neededSpaceOnLeft = spaceOnRight < halfWidth ? width - spaceOnRight : halfWidth;
 
     final bool fitsOnTop = spaceOnTop >= spaceOnBottom;
     final bool fitsOnLeft = spaceOnLeft >= neededSpaceOnLeft;
@@ -160,8 +150,7 @@ class _CupertinoPickerOverlayState extends State<CupertinoPickerOverlay> {
 
     double maxScale = 1.0;
 
-    final double availableWidth =
-        screenWidth - (horizontalSpacing * 2) - offset.dx;
+    final double availableWidth = screenWidth - (horizontalSpacing * 2) - offset.dx;
     final double availableHeight = verticalSpace;
     if (availableHeight < height) {
       maxScale = availableHeight / height;
@@ -186,7 +175,7 @@ class _CupertinoPickerOverlayState extends State<CupertinoPickerOverlay> {
 
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (_, __) => _closeOverlay(),
+      onPopInvoked: (_) => _closeOverlay(),
       child: Stack(
         clipBehavior: Clip.none,
         children: <Widget>[
@@ -208,8 +197,7 @@ class _CupertinoPickerOverlayState extends State<CupertinoPickerOverlay> {
                 height: height,
                 width: width,
                 onInitialized: _onInitialized,
-                decoration: widget.containerDecoration ??
-                    PickerContainerDecoration.withDynamicColor(context),
+                decoration: widget.containerDecoration ?? PickerContainerDecoration.withDynamicColor(context),
                 maxScale: maxScale,
                 scaleAlignment: scaleAligment,
                 child: widget.child,
